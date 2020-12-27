@@ -2,8 +2,6 @@
 
 source config.sh
 
-systemctl enable NetworkManager
-systemctl start NetworkManager
 echo "root:"$rootpassword"" | chpasswd
 useradd -m -G wheel $username
 echo ""$username":"$password"" | chpasswd

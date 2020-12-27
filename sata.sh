@@ -41,5 +41,6 @@ echo $'options\troot=UUID=$UUID rw' >> /boot/loader/entries/arch.conf
 cp -R postChroot/sudoers /etc/sudoers
 cp -r postChroot/bootstrap /home 
 rm -rf postChroot
+systemctl enable NetworkManager
 EOF
 reboot
