@@ -19,7 +19,7 @@ if [ $setup = '1' ]; then
 	cd builds
 	git clone https://github.com/dominicbauers/db-dwm
 	git clone https://github.com/dominicbauers/db-st
-	git clone https://git.suckless.org/slstatus
+	git clone https://github.com/dominicbauers/db-slstatus
 	git clone https://git.suckless.org/dmenu
 	git clone https://aur.archlinux.org/yay.git
 	cd db-dwm
@@ -28,7 +28,7 @@ if [ $setup = '1' ]; then
 	cd db-st
 	make clean install
 	cd ..
-	cd slstatus
+	cd db-slstatus
 	make clean install
 	cd ..
 	cd dmenu
@@ -38,7 +38,7 @@ if [ $setup = '1' ]; then
 	mkdir Wallpapers
 	cd dotfiles
 	cp .xinitrc /home/$username
-	cp -R sxhkdrc /home/$username/.config/sxhkd/sxhkdrc
+	cp sxhkdrc /home/$username/.config/sxhkd/sxhkdrc
 else
 	pacman -S --noconfirm git plasma dolphin sddm konsole firefox
 	mkdir /home/$username/builds
