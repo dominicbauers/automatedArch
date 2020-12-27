@@ -22,6 +22,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 cp -r postChroot /mnt
 
+UUID=$(lsblk -no UUID /dev/sda3)
+
 arch-chroot /mnt <<EOF
 ln -sf /usr/share/zoneinfo/America/Detroit /etc/localtime
 hwclock --systohc
@@ -30,6 +32,10 @@ locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 echo 'archbox' > /etc/hostname
 cp postChroot/hosts /etc/hosts
-echo 'password' | passwd --stdin
+echo "root:password" | chpasswd
+bootctl --path=/boot install
+echo "default	arch-*" >> /boot/loader/loader.conf
+cp postChroot/arch.conf /boot/loader/emtries/arch.conf
+echo "options	root=UUID=$UUID rw" >> /boot/loader/entries/arch.conf
 EOF
 arch-chroot /mnt
