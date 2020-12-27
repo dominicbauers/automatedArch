@@ -9,7 +9,7 @@ echo "root:"$rootpassword"" | chpasswd
 useradd -m -G wheel $username
 echo ""$username":"$password"" | chpasswd
 if [ $setup = '1' ]; then
-	pacman -S --noconfirm xorg xorg-xinit picom nitrogen sxhkd firefox git pulseaudio
+	echo 'y' | pacman -S xorg xorg-xinit picom nitrogen sxhkd firefox git pulseaudio
 	systemctl enable pulseaudio
 	pulseaudio --start
 	sxhkdrc &
@@ -46,4 +46,4 @@ else
 	git clone https://aur.archlinux.org/yay.git
 	systemctl enable sddm
 fi
-reboot
+
