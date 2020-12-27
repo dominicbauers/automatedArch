@@ -44,4 +44,5 @@ else
 	git clone https://aur.archlinux.org/yay.git
 	systemctl enable sddm
 fi
-
+rm -rf /home/bootstrap
+reboot
