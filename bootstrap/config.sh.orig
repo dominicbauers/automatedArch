@@ -1,0 +1,3 @@
+rootpassword=""
+username=""
+password=""
