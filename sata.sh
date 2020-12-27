@@ -20,6 +20,14 @@ pacstrap /mnt --quiet base base-devel linux linux-firmware networkmanager vim ma
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-cp -r postChroot /mnt
-
-arch-chroot /mnt ./postChroot/postChroot.sh
+arch-chroot /mnt <<EOF
+ln -sf /usr/share/zoneinfo/America/Detroit /etc/localtime
+hwclock --systohc
+cp /postChroot/locale.gen /etc/locale.gen
+locale-gen
+echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+echo 'archbox' > /etc/hostname
+cp postChroot/hosts /etc/hosts
+echo 'password' | passwd --stdin
+EOF
+arch-chroot /mnt
