@@ -20,6 +20,8 @@ pacstrap /mnt --quiet base base-devel linux linux-firmware networkmanager vim ma
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
+cp -r postChroot /mnt
+
 arch-chroot /mnt <<EOF
 ln -sf /usr/share/zoneinfo/America/Detroit /etc/localtime
 hwclock --systohc
