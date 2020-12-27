@@ -23,4 +23,4 @@ mkdir /mnt/postChroot
 
 cp -r /postChroot /mnt
 
-arch-chroot /mnt ./postChroot
+arch-chroot /mnt ./postChroot/postChroot.sh
