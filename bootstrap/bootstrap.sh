@@ -10,9 +10,7 @@ useradd -m -G wheel $username
 echo ""$username":"$password"" | chpasswd
 if [ $setup = '1' ]; then
 	echo 'y' | pacman -S xorg xorg-xinit picom nitrogen sxhkd firefox git pulseaudio
-	systemctl enable pulseaudio
-	pulseaudio --start
-	sxhkdrc &
+	sxhkd &
 	cd /home/$username
 	git clone https://github.com/dominicbauers/dotfiles
 	mkdir builds
@@ -39,6 +37,11 @@ if [ $setup = '1' ]; then
 	cd dotfiles
 	cp .xinitrc /home/$username
 	cp -R sxhkdrc /home/$username/.config/sxhkd/sxhkdrc
+	cd ..
+	su dominic << EOF
+	pulseauio --start
+	systemctl --user enable pulseaudio.socket
+	EOF
 else
 	pacman -S --noconfirm git plasma dolphin sddm konsole firefox
 	mkdir /home/$username/builds
