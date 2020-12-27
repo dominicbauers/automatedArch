@@ -1,5 +1,6 @@
 #!/bin/sh
 echo 'sata'
+timedatectl set-ntp true
 parted /dev/sda --script mklabel gpt
 parted /dev/sda --script mkpart primary fat32 1MiB 512MiB
 parted /dev/sda --script mkpart primary linux-swap 512MiB 8512Mib
@@ -19,8 +20,6 @@ pacstrap /mnt --quiet base base-devel linux linux-firmware networkmanager vim ma
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-mkdir /mnt/postChroot
-
-cp -r /postChroot /mnt
+cp -r postChroot /mnt
 
 arch-chroot /mnt ./postChroot/postChroot.sh
