@@ -8,8 +8,7 @@ echo "root:"$rootpassword"" | chpasswd
 useradd -m -G wheel $username
 echo ""$username":"$password"" | chpasswd
 if [ $setup = '1' ]; then
-	echo 'y' | pacman -S xorg xorg-xinit picom nitrogen sxhkd firefox git pulseaudio
-	sxhkd &
+	echo '' | pacman -S --noconfirm xorg xorg-xinit picom nitrogen sxhkd firefox git pulseaudio
 	cd /home/$username
 	git clone https://github.com/dominicbauers/dotfiles
 	mkdir builds
@@ -33,6 +32,8 @@ if [ $setup = '1' ]; then
 	cd ..
 	cd ..
 	mkdir Wallpapers
+	mkdir .config
+	mkdir .config/sxhkd
 	cd dotfiles
 	cp .xinitrc /home/$username
 	cp -R sxhkdrc /home/$username/.config/sxhkd/sxhkdrc
