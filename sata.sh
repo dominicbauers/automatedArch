@@ -25,6 +25,7 @@ cp -r postChroot /mnt
 UUID=$(lsblk -no UUID /dev/sda3)
 
 arch-chroot /mnt <<EOF
+echo 'y' | pacman -S linux
 ln -sf /usr/share/zoneinfo/America/Detroit /etc/localtime
 hwclock --systohc
 cp /postChroot/locale.gen /etc/locale.gen
