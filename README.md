@@ -11,3 +11,4 @@ cd automatedArch/
 cd bootstrap  
 edit the config file at config.sh  
 ./bootstrap.sh  
+*This enables networking, creates your user, installs programs*
