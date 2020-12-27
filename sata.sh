@@ -34,8 +34,8 @@ echo 'archbox' > /etc/hostname
 cp postChroot/hosts /etc/hosts
 echo "root:password" | chpasswd
 bootctl --path=/boot install
-echo "default	arch-*" >> /boot/loader/loader.conf
-cp postChroot/arch.conf /boot/loader/emtries/arch.conf
-echo "options	root=UUID=$UUID rw" >> /boot/loader/entries/arch.conf
+echo "default"/t"arch-*" >> /boot/loader/loader.conf
+cp postChroot/arch.conf /boot/loader/entries/arch.conf
+echo "options"\t"root=UUID=$UUID rw" >> /boot/loader/entries/arch.conf
 EOF
 arch-chroot /mnt
