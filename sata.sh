@@ -8,19 +8,19 @@ parted /dev/sda --script set 1 esp on
 
 mkfs.vfat /dev/sda1
 mkswap /dev/sda2
-swapon /dev/sda3
+swapon /dev/sda2
 mkfs.ext4 /dev/sda3
 
 mount /dev/sda3 /mnt
 mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
+pacstrap /mnt --quiet base base-devel linux linux-firmware networkmanager vim man-db man-pages
+
 genfstab -U /mnt >> /mnt/etc/fstab
 
-#pacstrap /mnt --quiet base base-devel linux linux-firmware networkmanager vim man-db man-pages
+mkdir /mnt/postChroot
 
-#echo "after pacman"
+cp -r /postChroot /mnt
 
-#cp -r /postChroot /mnt
-
-#arch-chroot /mnt ./postChroot/postChroot.sh
+arch-chroot /mnt ./postChroot
