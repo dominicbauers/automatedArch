@@ -38,5 +38,6 @@ bootctl --path=/boot install
 echo $'default/tarch-*' >> /boot/loader/loader.conf
 cp postChroot/arch.conf /boot/loader/entries/arch.conf
 echo $'options\troot=UUID=$UUID rw' >> /boot/loader/entries/arch.conf
+rm -rf postChroot
 EOF
-arch-chroot /mnt
+reboot
