@@ -34,13 +34,8 @@ if [ $setup = '1' ]; then
 	cd dmenu
 	make clean install
 	cd ..
-	chmod 777 yay
-	su $username
-	cd yay
-	makepkg --noconfirm -si
-	yay -S --noconfirm pulseaudio-ctl
 	cd ..
-	cd ..
+	mkdir Wallpapers
 	cd dotfiles
 	cp .xinitrc /home/$username
 	cp sxhkdrc /home/$username/.config/sxhkd/sxhkdrc
@@ -49,10 +44,6 @@ else
 	mkdir /home/$username/builds
 	cd /home/$username/builds
 	git clone https://aur.archlinux.org/yay.git
-	chmod 777 yay
-	su $username
-	cd yay
-	makepkg --noconfirm -si
 	systemctl enable sddm
 fi
 reboot
