@@ -22,7 +22,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 cp -r postChroot /mnt
 
-UUID=$(lsblk -no UUID /dev/sda3)
+UUID=$(lsblk -no UUID /dev/nvme0n1p3)
 
 arch-chroot /mnt <<EOF
 echo 'y' | pacman -S linux
