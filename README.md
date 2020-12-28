@@ -7,8 +7,8 @@ git clone https:github.com/dominicbauers/automatedArch
 cd automatedArch/  
 ./autoarch.sh  
 *This installs the base system with the root password being "password"*  
-## Bootstrap time! (not working yet)  
-cd bootstrap  
+## Bootstrap time!
+cd /home/bootstrap  
 edit the config file at config.sh  
 ./bootstrap.sh  
 *This enables networking, creates your user, installs programs*
