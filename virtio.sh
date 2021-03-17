@@ -16,13 +16,12 @@ mount /dev/vda3 /mnt
 mkdir /mnt/boot
 mount /dev/vda1 /mnt/boot
 
-pacstrap /mnt --quiet base base-devel linux linux-firmware networkmanager vim man-db man-pages
+pacstrap /mnt --quiet base base-devel linux linux-firmware networkmanager vim man-db man-pages grub efibootmgr
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp -r postChroot /mnt
 
-UUID=$(lsblk -no UUID /dev/vda3)
 
 arch-chroot /mnt <<EOF
 echo 'y' | pacman -S linux
@@ -34,10 +33,8 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 echo 'archbox' > /etc/hostname
 cp postChroot/hosts /etc/hosts
 echo "root:password" | chpasswd
-bootctl --path=/boot install
-echo $'default/tarch-*' >> /boot/loader/loader.conf
-cp postChroot/arch.conf /boot/loader/entries/arch.conf
-echo $'options\troot=UUID=$UUID rw' >> /boot/loader/entries/arch.conf
+grub-install --target=x86_64-efi --efi-directory-/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
 cp -R postChroot/sudoers /etc/sudoers
 cp -r postChroot/bootstrap /home 
 rm -rf postChroot
