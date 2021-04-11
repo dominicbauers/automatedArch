@@ -35,9 +35,14 @@ cp postChroot/hosts /etc/hosts
 echo "root:password" | chpasswd
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
-cp -R postChroot/sudoers /etc/sudoers
+cp -r postChroot/sudoers /etc/sudoers
 cp -r postChroot/bootstrap /home 
 rm -rf postChroot
 systemctl enable NetworkManager
+echo "root:password" | chpasswd
+useradd -m -G wheel user
+echo "user:password" | chpasswd
+pacman -S --noconfirm git plasma dolphin sddm konsole firefox
+systemctl enable sddm
 EOF
 reboot
