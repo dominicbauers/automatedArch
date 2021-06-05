@@ -1,4 +1,5 @@
 #!/bin/bash
+timedatectl set-ntp true
 echo Enter 1 for SATA, 2 for NVME, 3 for VIRTIO
 read disk
 if [ $disk = "1" ]; then
@@ -76,8 +77,7 @@ systemctl enable NetworkManager
 echo "root:password" | chpasswd
 useradd -m -G wheel user
 echo "user:password" | chpasswd
-pacman -S --noconfirm git plasma dolphin sddm konsole firefox
-systemctl enable sddm
+pacman -S --noconfirm git
 EOF
 reboot
 
