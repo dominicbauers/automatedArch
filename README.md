@@ -6,7 +6,8 @@ pacman -Sy git
 git clone https:github.com/dominicbauers/automatedArch  
 cd automatedArch/  
 Choose the script for what you want installed,
-ex: installBASE.sh for just the base system, installKDE.sh for KDE plasma
+ex: installBASE.sh for just the base system
+installKDE.sh for KDE plasma
 Will prompt you to enter type of disks then automatically installs the rest
 
 ## Guided, Wizard Install (Currently in Development).
